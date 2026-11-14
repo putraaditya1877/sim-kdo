@@ -14,7 +14,20 @@ Proyek dikembangkan bertahap sesuai [rencana implementasi](docs/PLAN.md). Fase y
 
 ## Menjalankan proyek
 
-Instruksi setup Docker dan setup manual akan dilengkapi setelah scaffold backend dan frontend tersedia.
+Salin `.env.example` menjadi `.env` bila ingin mengubah konfigurasi default, lalu jalankan:
+
+```bash
+docker compose up -d --build
+curl http://localhost:8080/api/v1/health
+docker compose exec api /app/simkdo migrate up
+docker compose exec api /app/simkdo seed
+```
+
+Backend lokal dapat dijalankan dari `backend/` dengan `go run ./cmd/simkdo serve` setelah PostgreSQL tersedia.
+
+Health endpoint mengembalikan envelope JSON dan status koneksi API serta database.
+
+Data seed demo menggunakan akun `admin@simkdo.test` dan `operator@simkdo.test`, keduanya dengan password `password`.
 
 ## Dokumentasi
 
