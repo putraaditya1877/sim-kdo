@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 import { getCookie, setCookie, removeCookie } from '@/lib/cookies'
 
-const ACCESS_TOKEN = 'thisisjustarandomstring'
+const ACCESS_TOKEN = 'simkdo_access_token'
 
-interface AuthUser {
-  accountNo: string
+export interface AuthUser {
+  id: number
+  name: string
   email: string
-  role: string[]
-  exp: number
+  role: string
 }
 
 interface AuthState {
