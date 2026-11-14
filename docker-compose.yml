@@ -30,5 +30,13 @@ services:
     ports:
       - "8080:8080"
 
+  web:
+    build:
+      context: ./frontend
+    depends_on:
+      - api
+    ports:
+      - "3000:80"
+
 volumes:
   pgdata:
