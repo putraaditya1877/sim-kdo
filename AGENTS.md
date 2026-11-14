@@ -10,8 +10,8 @@ SIM-KDO adalah sistem pengelolaan Kendaraan Dinas Operasional (KDO) milik Perang
 ## Aturan Keras
 1. **Jangan membuka, membaca, menyalin, atau meng-commit `soal.text`.** File itu berisi kredensial pribadi. Pastikan file itu tercantum di `.gitignore` sebelum commit pertama.
 2. Jangan menaruh secret di repo. Pakai `.env` (di-ignore) dan sediakan `.env.example`.
-3. Jangan `git push`, jangan ubah remote, jangan `git push --force`, jangan rewrite history. Push dilakukan oleh pemilik repo.
-4. Kerjakan **satu fase per sesi** sesuai tabel §9 di PLAN.md. Setelah fase selesai, **berhenti** dan tulis ringkasan (lihat "Format Ringkasan Fase").
+3. **`git push` wajib atas persetujuan pemilik repo.** Di akhir setiap fase, tulis ringkasan singkat lalu tanya: "Fase Fx selesai. Boleh push ke origin main?" dan tunggu jawaban. Push hanya setelah disetujui. Jangan pernah `git push --force`, jangan ubah remote, dan jangan rewrite history.
+4. Kerjakan **semua fase berurutan dari F1 sampai F9** (tabel §9 di PLAN.md). Di akhir setiap fase: verifikasi, commit, minta persetujuan push (aturan 3). Setelah pemilik menjawab (setuju atau tidak), push jika disetujui lalu **langsung lanjut** ke fase berikutnya tanpa perlu diminta lagi. Selain untuk persetujuan push, berhenti hanya jika benar-benar terblokir (mis. Docker mati) dan jelaskan apa yang dibutuhkan.
 5. Jangan menandai pekerjaan sebagai selesai sebelum perintah verifikasinya benar-benar dijalankan dan lulus. Jika ada yang gagal atau dilewati, laporkan apa adanya.
 6. Jangan memakai nama atau NIP orang sungguhan di data seed.
 7. Jangan menambah dependency di luar stack PLAN.md tanpa alasan kuat. Kalau terpaksa, sebutkan di ringkasan.
