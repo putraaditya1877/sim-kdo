@@ -21,6 +21,7 @@ import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
+import { Route as AuthenticatedKendaraanIdRouteImport } from './routes/_authenticated/kendaraan.$id'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -84,6 +85,12 @@ const AuthenticatedHelpCenterIndexRoute =
     path: '/help-center/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedKendaraanIdRoute =
+  AuthenticatedKendaraanIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AuthenticatedKendaraanRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -99,10 +106,11 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
-  '/kendaraan': typeof AuthenticatedKendaraanRoute
+  '/kendaraan': typeof AuthenticatedKendaraanRouteWithChildren
   '/pegawai': typeof AuthenticatedPegawaiRoute
   '/perangkat-daerah': typeof AuthenticatedPerangkatDaerahRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/kendaraan/$id': typeof AuthenticatedKendaraanIdRoute
   '/help-center/': typeof AuthenticatedHelpCenterIndexRoute
 }
 export interface FileRoutesByTo {
@@ -112,11 +120,12 @@ export interface FileRoutesByTo {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
-  '/kendaraan': typeof AuthenticatedKendaraanRoute
+  '/kendaraan': typeof AuthenticatedKendaraanRouteWithChildren
   '/pegawai': typeof AuthenticatedPegawaiRoute
   '/perangkat-daerah': typeof AuthenticatedPerangkatDaerahRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/kendaraan/$id': typeof AuthenticatedKendaraanIdRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
 }
 export interface FileRoutesById {
@@ -128,11 +137,12 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
-  '/_authenticated/kendaraan': typeof AuthenticatedKendaraanRoute
+  '/_authenticated/kendaraan': typeof AuthenticatedKendaraanRouteWithChildren
   '/_authenticated/pegawai': typeof AuthenticatedPegawaiRoute
   '/_authenticated/perangkat-daerah': typeof AuthenticatedPerangkatDaerahRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/kendaraan/$id': typeof AuthenticatedKendaraanIdRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
 }
 export interface FileRouteTypes {
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/pegawai'
     | '/perangkat-daerah'
     | '/errors/$error'
+    | '/kendaraan/$id'
     | '/help-center/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/perangkat-daerah'
     | '/'
     | '/errors/$error'
+    | '/kendaraan/$id'
     | '/help-center'
   id:
     | '__root__'
@@ -178,6 +190,7 @@ export interface FileRouteTypes {
     | '/_authenticated/perangkat-daerah'
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/kendaraan/$id'
     | '/_authenticated/help-center/'
   fileRoutesById: FileRoutesById
 }
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHelpCenterIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/kendaraan/$id': {
+      id: '/_authenticated/kendaraan/$id'
+      path: '/$id'
+      fullPath: '/kendaraan/$id'
+      preLoaderRoute: typeof AuthenticatedKendaraanIdRouteImport
+      parentRoute: typeof AuthenticatedKendaraanRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -287,8 +307,22 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedKendaraanRouteChildren {
+  AuthenticatedKendaraanIdRoute: typeof AuthenticatedKendaraanIdRoute
+}
+
+const AuthenticatedKendaraanRouteChildren: AuthenticatedKendaraanRouteChildren =
+  {
+    AuthenticatedKendaraanIdRoute: AuthenticatedKendaraanIdRoute,
+  }
+
+const AuthenticatedKendaraanRouteWithChildren =
+  AuthenticatedKendaraanRoute._addFileChildren(
+    AuthenticatedKendaraanRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedKendaraanRoute: typeof AuthenticatedKendaraanRoute
+  AuthenticatedKendaraanRoute: typeof AuthenticatedKendaraanRouteWithChildren
   AuthenticatedPegawaiRoute: typeof AuthenticatedPegawaiRoute
   AuthenticatedPerangkatDaerahRoute: typeof AuthenticatedPerangkatDaerahRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
@@ -297,7 +331,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedKendaraanRoute: AuthenticatedKendaraanRoute,
+  AuthenticatedKendaraanRoute: AuthenticatedKendaraanRouteWithChildren,
   AuthenticatedPegawaiRoute: AuthenticatedPegawaiRoute,
   AuthenticatedPerangkatDaerahRoute: AuthenticatedPerangkatDaerahRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
