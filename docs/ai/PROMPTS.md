@@ -3,7 +3,7 @@
 | Alat | Model | Peran |
 |---|---|---|
 | Claude Code (ekstensi VS Code) | Claude Opus 5.5 | Membaca soal, menyusun rencana implementasi ([docs/PLAN.md](../PLAN.md)), menulis [AGENTS.md](../../AGENTS.md), dan menyusun prompt untuk Codex |
-| OpenAI Codex | _(isi nama model yang dipakai)_ | Mengimplementasikan kode per fase sesuai PLAN.md |
+| OpenAI Codex | GPT-5.6 Luna | Mengimplementasikan kode per fase sesuai PLAN.md |
 
 Semua hasil AI sudah ditinjau, dijalankan, dan diuji oleh pemilik repo sebelum di-push.
 
