@@ -32,7 +32,7 @@ type Kendaraan = {
   keterangan: string
 }
 
-const emptyForm: Partial<Kendaraan> = { nomor_polisi: '', merk: '', tipe: '', kondisi: 'baik', tahun_produksi: 2024, perangkat_daerah_id: 33, kode_barang: '1.3.2.02.01.01.999', nomor_register: 'REG-FE', nomor_rangka: 'RANGKA-FE', nomor_mesin: 'MESIN-FE', jenis: 'roda_4', warna: 'Hitam', bahan_bakar: 'bensin', isi_silinder: 1496, tanggal_perolehan: '2024-01-01', nilai_perolehan: 0, masa_berlaku_stnk: '2027-01-01', jatuh_tempo_pajak: '2026-12-31', keterangan: '' }
+const emptyForm: Partial<Kendaraan> = { nomor_polisi: '', merk: '', tipe: '', kondisi: 'baik', tahun_produksi: 2024, perangkat_daerah_id: 1, kode_barang: '1.3.2.02.01.01.999', nomor_register: 'REG-FE', nomor_rangka: 'RANGKA-FE', nomor_mesin: 'MESIN-FE', jenis: 'roda_4', warna: 'Hitam', bahan_bakar: 'bensin', isi_silinder: 1496, tanggal_perolehan: '2024-01-01', nilai_perolehan: 0, masa_berlaku_stnk: '2027-01-01', jatuh_tempo_pajak: '2026-12-31', keterangan: '' }
 
 function KendaraanPage() {
   const queryClient = useQueryClient()
