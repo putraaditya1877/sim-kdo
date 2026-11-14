@@ -10,6 +10,7 @@ type Config struct {
 	DatabaseURL    string
 	CORSOrigins    string
 	MigrateOnStart bool
+	JWTSecret      string
 }
 
 func Load() Config {
@@ -18,6 +19,7 @@ func Load() Config {
 		DatabaseURL:    env("DATABASE_URL", "postgres://simkdo:simkdo@localhost:5432/sim_kdo?sslmode=disable"),
 		CORSOrigins:    env("CORS_ORIGINS", "http://localhost:3000"),
 		MigrateOnStart: boolEnv("MIGRATE_ON_START", false),
+		JWTSecret:      env("JWT_SECRET", "development-only-change-me"),
 	}
 }
 
